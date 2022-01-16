@@ -22,7 +22,7 @@ const Details = ({navigation}) => {
       />
       
                 <KeyboardAvoidingView style={styles.loginBlock}>
-          <Text style={styles.heading}>Enter Your Details</Text>
+          <Text style={styles.heading}>Enter Your Details 4/4</Text>
        <View style={styles.inputContainer}>
       <TextInput
         style={styles.input}
@@ -57,14 +57,14 @@ const Details = ({navigation}) => {
       <TextInput
         style={styles.input}
         onChangeText={(text)=>{onChangeText(text)}}
-        placeholder = "GSTIN Number"
+        placeholder = "GSTIN Number (OPTIONAL)"
         placeholderTextColor="#000000" 
       
       />
         </View>
       
       <TouchableOpacity style={styles.button}
-        onPress ={()=>{navigation.navigate('Dashboard')}}
+        onPress ={()=>{navigation.navigate('Payment')}}
       >
        {!loading?<Text style={styles.buttonText}>Submit</Text>:
           <ActivityIndicator size="small" color="#ffffff" />}

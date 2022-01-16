@@ -21,6 +21,9 @@ import Previous from './screens/Previous';
 import Name from './screens/Name';
 import { DrawerContent } from './screens/DrawerContent';
 import Timeslot from './screens/Timeslot';
+import Know from './screens/Know';
+import Payment from './screens/Payment';
+import Complete from './screens/Complete';
 
 
 const App = () => {
@@ -36,7 +39,10 @@ const App = () => {
      <Stack.Screen name="Signup" component={Signup}/>
      <Stack.Screen name="Name" component={Name}/>
      <Stack.Screen name="Timeslot" component={Timeslot}/>
+     <Stack.Screen name="Know" component={Know}/>
      <Stack.Screen name="Details" component={Details}/>
+     <Stack.Screen name="Payment" component={Payment}/>
+     <Stack.Screen name="Complete" component={Complete}/>
      <Stack.Screen name="Dashboard" component={Dashboard}/>
      <Stack.Screen name="Profile" component={Profile}/>
      <Stack.Screen name="Previous" component={Previous}/>

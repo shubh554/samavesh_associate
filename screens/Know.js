@@ -1,18 +1,54 @@
-import React,{useContext,useState} from 'react'
+import React,{useContext,useState,useRef} from 'react'
 import { StyleSheet, Text,SafeAreaView, View,Image ,TextInput,TouchableOpacity,KeyboardAvoidingView,ActivityIndicator,Pressable} from 'react-native'
+import DateTimePicker from '@react-native-community/datetimepicker';
+import BouncyCheckbox from "react-native-bouncy-checkbox";
+import Weekdays from "../components/Weekdays";
+import {Picker} from '@react-native-picker/picker';
+//import DurationPicker from 'react-duration-picker'
 
 
 
 
-
-const Name = ({navigation}) => {
+const Know = ({navigation}) => {
     const [text, onChangeText] = React.useState("");
     const [text2, onChangeText2] = React.useState("");
     const [loading, setLoading] = React.useState(0);
-   
+    const [selectedLanguage, setSelectedLanguage] = useState("Social Media");
+    const [date, setDate] = useState(new Date(1598051730000));
+    const pickerRef = useRef();
+    const [mode, setMode] = useState('time');
+    const [show, setShow] = useState(false);
+    
+  
+    const onChange = (event, selectedDate) => {
+      const currentDate = selectedDate || date;
+      setShow(Platform.OS === 'ios');
+      setDate(currentDate);
+    };
+  
+    const showMode = (currentMode) => {
+      setShow(true);
+      setMode(currentMode);
+    };
+  
+    const showDatepicker = () => {
+      showMode('date');
+    };
+  
+    const showTimepicker = () => {
+      showMode('time');
+    };
+
+    const open=()=> {
+        pickerRef.current.focus();
+      }
+      
+      const close=() => {
+        pickerRef.current.blur();
+      }
 
     
-   
+  //alert(selectedLanguage)
 
     return (
        
@@ -24,29 +60,45 @@ const Name = ({navigation}) => {
       />
       
                 <KeyboardAvoidingView style={styles.loginBlock}>
-          <Text style={styles.heading}>Enter Your Details 1/4</Text>
-       <View style={styles.inputContainer}>
+          <Text style={styles.heading}>Enter Your Details 3/4</Text>
+  
+          <Text style={{color:'#512536',fontFamily:'normal',marginLeft:'3%'}}>How Did You Come To Know About Us?</Text>
+          <TouchableOpacity style={styles.pickerContiner}
+             onPress={open}
+           >
+            <Picker
+        selectedValue={selectedLanguage}
+        onValueChange={(itemValue, itemIndex) =>
+            
+            setSelectedLanguage(itemValue)
+         
+        }
+        numberOfLines={1}
+        ref={pickerRef}
+        itemStyle={{fontSize:1}}
+        style={{fontSize:10}}
+        dropdownIconColor={"#AC849C"}
+        >
+        <Picker.Item color={'#512536'} label="Social Media" value="Social Media" />
+        <Picker.Item color={'#512536'} label="Samavesh Associate Referral" value="Referal" />
+        <Picker.Item color={'#512536'} label="Word Of Mouth" value="Word Of Mouth" />
+        <Picker.Item color={'#512536'} label="Other" value="Other" />
+      </Picker>
+      </TouchableOpacity>
+
+      {selectedLanguage!="Social Media" && selectedLanguage!="Word Of Mouth"?<View style={styles.inputContainer}>
       <TextInput
         style={styles.input}
         onChangeText={(text)=>{onChangeText(text)}}
-        placeholder = "Enter Your Name"
+        placeholder = {`Enter ${selectedLanguage}`}
         placeholderTextColor="#000000" 
       
       />
-        </View>
-        <View style={styles.inputContainer}>
-      <TextInput
-        style={styles.input}
-        onChangeText={(text)=>{onChangeText(text)}}
-        placeholder = "Enter Your Bussiness Name (If any)"
-        placeholderTextColor="#000000" 
-      
-      />
-        </View>
+        </View>:null}
        
      
        <TouchableOpacity style={styles.button}
-        onPress ={()=>{navigation.navigate('Timeslot')}}
+        onPress ={()=>{navigation.navigate('Details')}}
       >
        {!loading?<Text style={styles.buttonText}>Submit</Text>:
           <ActivityIndicator size="small" color="#ffffff" />}
@@ -60,7 +112,7 @@ const Name = ({navigation}) => {
     )
 }
 
-export default Name
+export default Know
 
 const styles = StyleSheet.create({
   checkbox: {
@@ -118,7 +170,7 @@ const styles = StyleSheet.create({
       },
       button:{
        width:'100%',
-       height:56,
+       height:66,
        backgroundColor:'#512536',
        borderRadius:30,
        marginTop:'10%',
@@ -149,6 +201,15 @@ const styles = StyleSheet.create({
           marginTop:'5%',
           color:'#828282'
           
+      },
+      pickerContiner:{
+        width:'100%',
+        height:40,
+        borderWidth:1,
+        marginTop:15,
+        borderRadius:30,
+        justifyContent:'center',
+        borderColor:'#512536'
       }
 })
 

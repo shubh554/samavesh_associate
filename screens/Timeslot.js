@@ -2,6 +2,7 @@ import React,{useContext,useState} from 'react'
 import { StyleSheet, Text,SafeAreaView, View,Image ,TextInput,TouchableOpacity,KeyboardAvoidingView,ActivityIndicator,Pressable} from 'react-native'
 import DateTimePicker from '@react-native-community/datetimepicker';
 import BouncyCheckbox from "react-native-bouncy-checkbox";
+import Weekdays from "../components/Weekdays"
 //import DurationPicker from 'react-duration-picker'
 
 
@@ -48,7 +49,7 @@ const Timeslot = ({navigation}) => {
       />
       
                 <KeyboardAvoidingView style={styles.loginBlock}>
-          <Text style={styles.heading}>Enter Your Details 2</Text>
+          <Text style={styles.heading}>Enter Your Details 2/4</Text>
   
       <TouchableOpacity
       onPress={()=>{setShow(true)}}
@@ -71,20 +72,20 @@ const Timeslot = ({navigation}) => {
       style={{backgroundColor:'#512536',width:'100%',height:56,borderRadius:50,justifyContent:'center',alignItems:'center',marginTop:10}}>
         <Text style={{color:'#ffffff',fontFamily:'normal'}}>Closing Time</Text>
       </TouchableOpacity>
-        <View style={styles.inputContainer}>
-      <TextInput
-        style={styles.input}
-        onChangeText={(text)=>{onChangeText(text)}}
-        placeholder = "Enter Your Bussiness Name (If any)"
-        placeholderTextColor="#000000" 
-      
-      />
-        </View>
-  
+      <Text style={{textAlign:'left',marginLeft:'5%',marginTop:10,fontFamily:'normal',color:'#000000'}}>Select Working Days</Text>
+      <View style={{flexDirection:'row',justifyContent:'space-evenly'}}>
+      <Weekdays value={"M"}></Weekdays>
+      <Weekdays value={"T"}></Weekdays>
+      <Weekdays value={"W"}></Weekdays>
+      <Weekdays value={"T"}></Weekdays>
+      <Weekdays value={"F"}></Weekdays>
+      <Weekdays value={"S"}></Weekdays>
+      <Weekdays value={"S"}></Weekdays>
+      </View>
        
      
        <TouchableOpacity style={styles.button}
-        onPress ={()=>{navigation.navigate('Timeslot')}}
+        onPress ={()=>{navigation.navigate('Know')}}
       >
        {!loading?<Text style={styles.buttonText}>Submit</Text>:
           <ActivityIndicator size="small" color="#ffffff" />}

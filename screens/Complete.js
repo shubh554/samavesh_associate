@@ -5,7 +5,7 @@ import { StyleSheet, Text,SafeAreaView, View,Image ,TextInput,TouchableOpacity,K
 
 
 
-const Name = ({navigation}) => {
+const Complete = ({navigation}) => {
     const [text, onChangeText] = React.useState("");
     const [text2, onChangeText2] = React.useState("");
     const [loading, setLoading] = React.useState(0);
@@ -22,45 +22,32 @@ const Name = ({navigation}) => {
         source={require('../assets/logo.png')}
         resizeMode = 'contain'
       />
-      
-                <KeyboardAvoidingView style={styles.loginBlock}>
-          <Text style={styles.heading}>Enter Your Details 1/4</Text>
-       <View style={styles.inputContainer}>
-      <TextInput
-        style={styles.input}
-        onChangeText={(text)=>{onChangeText(text)}}
-        placeholder = "Enter Your Name"
-        placeholderTextColor="#000000" 
-      
+
+<Image
+        style={styles.logo}
+        source={require('../assets/handshake.png')}
+        resizeMode = 'contain'
       />
-        </View>
-        <View style={styles.inputContainer}>
-      <TextInput
-        style={styles.input}
-        onChangeText={(text)=>{onChangeText(text)}}
-        placeholder = "Enter Your Bussiness Name (If any)"
-        placeholderTextColor="#000000" 
-      
-      />
-        </View>
-       
-     
-       <TouchableOpacity style={styles.button}
-        onPress ={()=>{navigation.navigate('Timeslot')}}
+
+       <View style={{marginLeft:'10%',marginRight:'5%'}}>
+              <Text style={{fontFamily:'normal',fontSize:22,textAlign:'left',color:'#512536'}}><Text style={{fontFamily:'banner',fontSize:35}}>Congratulations!</Text> you are successfully registered. Your Associate code is XXXX236
+      </Text>
+          </View>
+
+<TouchableOpacity style={styles.button}
+        onPress ={()=>{navigation.navigate('Dashboard')}}
       >
-       {!loading?<Text style={styles.buttonText}>Submit</Text>:
+         
+       {!loading?<Text style={styles.buttonText}>Dashboard</Text>:
           <ActivityIndicator size="small" color="#ffffff" />}
      </TouchableOpacity>
-     <Text style={{textAlign:'center',marginTop:50,fontSize:12,fontFamily:'normal',color:'#512536'}}>By registring I agree to the terms & conditions.</Text>
-   
-
-   
-      </KeyboardAvoidingView>
+      
+            
            </SafeAreaView>
     )
 }
 
-export default Name
+export default Complete
 
 const styles = StyleSheet.create({
   checkbox: {
@@ -72,7 +59,7 @@ const styles = StyleSheet.create({
         backgroundColor:'#E5E5E5'
     },
     logo:{
-        marginTop:'20%',
+        marginTop:'1%',
         height:200,
         width:200,
         marginLeft:'25%'
@@ -117,12 +104,13 @@ const styles = StyleSheet.create({
           marginTop:'10%'
       },
       button:{
-       width:'100%',
-       height:56,
+       width:'80%',
+       height:46,
        backgroundColor:'#512536',
        borderRadius:30,
        marginTop:'10%',
-       justifyContent:'center'
+       justifyContent:'center',
+       marginLeft:'10%'
       },
       buttonText:{
           color:'#ffffff',
